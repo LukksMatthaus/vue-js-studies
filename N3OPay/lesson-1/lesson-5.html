@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+                Teste Vue.Js
+        </title>
+        <style>
+            .isLoading{
+                background-color: blueviolet;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"> 
+            <button :title="title" :class="{'isLoading' : isLoading}" @click="ToogleClass" >Toggle Me</button>  
+            
+        </div>    
+
+        <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+
+        <script>
+            new Vue({
+                el: '#root',
+                data: {
+                    title : 'Look im the title',
+                    isLoading : false,
+                    disabled = 0
+                } , 
+                methods  : {
+                    ToogleClass(){
+                        this.isLoading = true;
+                        
+                    }
+                }
+            
+            
+        })
+        </script>
+
+    </body>
+</html>

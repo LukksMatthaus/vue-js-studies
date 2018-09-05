@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+                Teste Vue.Js
+        </title>
+    </head>
+    <body>
+        <div id="root"> 
+            <h2> All Tasks</h2>
+           <ul>
+               <li v-for = "task in tasks" v-text="task.description"></li>
+           </ul>
+           <h2>Incomplete Tasks</h2>
+           <ul>
+               <li v-for = "task in Incompletetasks" v-text="task.description"></li>
+           </ul>
+        </div>    
+
+        <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+
+        <script>
+            new Vue({
+                el: '#root',
+                data: {
+                    tasks: [
+                        {description : 'Go to the Store', completed : true},
+                        {description : 'Go to the Mall' , completed : false},
+                        {description : 'Go home', completed : false}
+
+
+                    ]
+                },
+                computed: {
+                    Incompletetasks(){
+                        return(this.tasks.filter(tasks => !tasks.completed));
+                    }
+                }
+            
+            
+        })
+        </script>
+
+    </body>
+</html>
