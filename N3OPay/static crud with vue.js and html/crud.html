@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model = "newName">
+        <button @click="AddName">Add Name</button>
+        <hr>
+        <table>
+            <template  v-for="(name,key) in names">
+            <tr>
+                <th v-text="name"></th>
+                <th><button @click="removeName(key)">Remove me</button></th>
+                <th><button>Upadate me</button></th>
+            </tr>
+        </template>
+        </table>
+    </div>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el : '#root' ,
+            data :{
+                names : ['Caroline','Matthew','Joe','Teste vue'],
+                newName : ''
+
+            },
+            methods : {
+                AddName(){
+                    this.names.push(this.newName);
+                    this.newName = '';
+                },
+                removeName(index){
+                    this.$delete(this.names,index);
+                }
+
+
+            }
+
+
+        })
+    </script>
+</body>
+</html>
