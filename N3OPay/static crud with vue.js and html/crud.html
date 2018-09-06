@@ -8,9 +8,10 @@
         <button @click="AddName">Add Name</button>
         <hr>
         <table>
-            <template  v-for="(name,key) in names">
+            <!-- <template  v-for="(name,key) in names"> !-->
+            <template  v-for="(p,key) in Persons">
             <tr>
-                <th v-text="name"></th>
+                <th v-text="p.name"></th>
                 <th><button @click="removeName(key)">Remove me</button></th>
                 <th><button>Upadate me</button></th>
             </tr>
@@ -23,16 +24,26 @@
             el : '#root' ,
             data :{
                 names : ['Caroline','Matthew','Joe','Teste vue'],
+                Persons : [
+                    {id : 0 , name : 'Caroline'},
+                    {id : 1 , name : 'Matthew'},
+                    {id : 2, name : 'Joe'}
+                ],
+                editID : 0,
+                lastID : 2,
                 newName : ''
 
             },
             methods : {
                 AddName(){
-                    this.names.push(this.newName);
+                    this.lastID++;
+                    this.Persons.push({id : this.lastID, name : this.newName});
+                    //this.names.push(this.newName);
                     this.newName = '';
                 },
                 removeName(index){
-                    this.$delete(this.names,index);
+                    this.$delete(this.Persons,index);
+                    //this.$delete(this.names,index);
                 }
 
 
