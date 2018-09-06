@@ -8,7 +8,6 @@
         <button @click="AddName">Add Name</button>
         <hr>
         <table>
-            <!-- <template  v-for="(name,key) in names"> !-->
             <template  v-for="(p,key) in Persons">
             <tr>
                 <th v-text="p.name"></th>
@@ -38,12 +37,10 @@
                 AddName(){
                     this.lastID++;
                     this.Persons.push({id : this.lastID, name : this.newName});
-                    //this.names.push(this.newName);
                     this.newName = '';
                 },
                 removeName(index){
                     this.$delete(this.Persons,index);
-                    //this.$delete(this.names,index);
                 }
 
 
