@@ -8,14 +8,22 @@
         <button @click="AddName">Add Name</button>
         <hr>
         <table>
-            <template  v-for="(p,key) in Persons">
-            <tr>
-                <th v-text="p.name"></th>
-                <th><button @click="removeName(key)">Remove me</button></th>
-                <th><button>Upadate me</button></th>
+           <!-- <template  v-for="(p,key) in Persons"> !-->
+            <tr v-for="(p,key) in Persons" v-bind:key ="p.id"> 
+                <template v-if="editID == p.id">
+                    <td><input v-model ="flagID" type="number"></td>
+                    <td><input v-model = "reName" type="text"></td>
+                    <td><button @click="Update(key)">Edit me</button></td>
+                </template>
+                <template v-else>
+                    <td v-text="p.name"></td>
+                        <td><button @click="removeName(key)">Remove me</button></td>
+                        <td><button @click="startUpdate(key)">Upadate me</button></td>
+                </template>
             </tr>
-        </template>
+     <!--   </template> !-->
         </table>
+      
     </div>
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
     <script>
@@ -28,9 +36,11 @@
                     {id : 1 , name : 'Matthew'},
                     {id : 2, name : 'Joe'}
                 ],
-                editID : 0,
+                editID : -1,
                 lastID : 2,
-                newName : ''
+                newName : '',
+                flagID : 0,
+                reName : ''
 
             },
             methods : {
@@ -41,6 +51,17 @@
                 },
                 removeName(index){
                     this.$delete(this.Persons,index);
+                },
+                startUpdate(index){
+                    this.editID = index;
+
+                },
+                Update(index){
+                    this.Persons[index].name = this.reName;
+                    this.Persons[index].id = this.flagID;
+                    this.flagID = -1;
+                    this.reName = '';
+                    this.editID = -1;
                 }
 
 
